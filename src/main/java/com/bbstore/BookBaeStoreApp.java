@@ -13,7 +13,12 @@ public class BookBaeStoreApp {
     }
 
     public void execute(){
+        try {
+            database.connect(connection.getConnection());
 
+        }catch (Exception e){
+            System.out.println("Error: "+e.getMessage());
+        }
     }
 
 }
