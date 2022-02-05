@@ -4,6 +4,7 @@ import com.bbstore.connection.DBConnection;
 import com.bbstore.connection.SQLConnection;
 import com.bbstore.database.Database;
 import com.bbstore.database.SQLDatabase;
+import com.bbstore.input.InputValidator;
 import com.bbstore.reader.JSONReader;
 
 public class Main {
@@ -15,8 +16,9 @@ public class Main {
                 dbCredentials.get("password")
         );
         Database db = new SQLDatabase();
+        InputValidator inputValidator = new InputValidator();
 
-        BookBaeStoreApp bookBaeStoreApplication = new BookBaeStoreApp(connection, db);
+        BookBaeStoreApp bookBaeStoreApplication = new BookBaeStoreApp(connection, db, inputValidator);
 
         //start the app
         bookBaeStoreApplication.execute();
