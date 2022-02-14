@@ -1,13 +1,17 @@
 package com.bbstore.users;
 
+import com.bbstore.cookies.CookieManager;
 import com.bbstore.database.Database;
 
 import java.sql.ResultSet;
 
 public class UserAuthenticator {
     private final Database database;
-    public UserAuthenticator(Database database){
+    private final CookieManager cookieManager;
+
+    public UserAuthenticator(Database database, CookieManager cookieManager){
         this.database = database;
+        this.cookieManager = cookieManager;
     }
 
     public void login(String email, String password) throws Exception{
@@ -17,8 +21,12 @@ public class UserAuthenticator {
             );
 
             if (login.next()){
-                System.out.println(login.getString("email"));
-                System.out.println(login.getString("password"));
+                String adminEmail = login.getString("email");
+
+                setEmail(adminEmail);
+
+                System.out.println(isLoggedIn());
+                System.out.println(getSignedEmail());
             }else{
                 throw new LogInFailedException("Incorrect email or password.");
             }
@@ -26,11 +34,18 @@ public class UserAuthenticator {
             throw new LogInFailedException(e.getMessage());
         }
     }
+    public void setEmail(String email){
+        this.cookieManager.setEmail(email);
+    }
     public void signOut(){
-
+        this.cookieManager.clearEmail();
     }
 
     public boolean isLoggedIn(){
-        return false;
+        return this.cookieManager.isSet();
+    }
+
+    public String getSignedEmail(){
+        return this.cookieManager.getEmail();
     }
 }

@@ -12,16 +12,19 @@ public class BookBaeStoreApp {
     UserAuthenticator authenticator;
     InputValidator inputValidator;
 
-    public BookBaeStoreApp(DBConnection connection, Database database, InputValidator inputValidator){
+    public BookBaeStoreApp(DBConnection connection, Database database, InputValidator inputValidator, UserAuthenticator authenticator){
         this.connection = connection;
         this.database = database;
         this.inputValidator = inputValidator;
+        this.authenticator = authenticator;
     }
 
     public void execute(){
         try {
             database.connect(connection.getConnection());
-            authenticator = new UserAuthenticator(this.database);
+
+            authenticator.signOut();
+            System.out.println(authenticator.isLoggedIn());
 
             LogIn login = new LogIn(authenticator, this.inputValidator);
             login.setVisible(true);
