@@ -14,7 +14,7 @@ public class UserAuthenticator {
         this.cookieManager = cookieManager;
     }
 
-    public void login(String email, String password) throws Exception{
+    public boolean login(String email, String password) throws Exception{
         try{
             ResultSet login = this.database.executeQuery(
                     "SELECT * FROM admins WHERE email='"+email+"' AND password='"+password+"'"
@@ -22,11 +22,9 @@ public class UserAuthenticator {
 
             if (login.next()){
                 String adminEmail = login.getString("email");
-
                 setEmail(adminEmail);
 
-                System.out.println(isLoggedIn());
-                System.out.println(getSignedEmail());
+                return true;
             }else{
                 throw new LogInFailedException("Incorrect email or password.");
             }
