@@ -32,7 +32,7 @@ public class Main {
         //Navigator routes
         HashMap<String, GUI> routes = new HashMap<>();
         routes.put("login", new LogIn(authenticator, inputValidator));
-        routes.put("home", new HomeScreen());
+        routes.put("home", new HomeScreen(authenticator));
 
         Navigator.setRoutes(routes);
 
