@@ -3,6 +3,7 @@ package com.bbstore.ui.uis;
 import com.bbstore.input.InputValidator;
 import com.bbstore.input.InvalidInputException;
 import com.bbstore.input.PasswordEncryptor;
+import com.bbstore.navigator.Navigator;
 import com.bbstore.ui.GUI;
 import com.bbstore.users.UserAuthenticator;
 
@@ -23,6 +24,7 @@ public class LogIn extends GUI {
         setContentPane(this.loginPanel);
         setResizable(false);
         setLocationRelativeTo(null);
+        setAutoRequestFocus(true);
 
         this.inputValidator = inputValidator;
         this.authenticator = authenticator;
@@ -48,7 +50,11 @@ public class LogIn extends GUI {
             throw new InvalidInputException("Invalid password!");
         }else{
             String password = PasswordEncryptor.md5(passwordText);
-            authenticator.login(email, password);
+            boolean loginSuccess = authenticator.login(email, password);
+
+            if(loginSuccess){
+                Navigator.push("home");
+            }
         }
     }
 }
