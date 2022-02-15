@@ -6,8 +6,14 @@ import com.bbstore.cookies.CookieManager;
 import com.bbstore.database.Database;
 import com.bbstore.database.SQLDatabase;
 import com.bbstore.input.InputValidator;
+import com.bbstore.navigator.Navigator;
 import com.bbstore.reader.JSONReader;
+import com.bbstore.ui.GUI;
+import com.bbstore.ui.uis.HomeScreen;
+import com.bbstore.ui.uis.LogIn;
 import com.bbstore.users.UserAuthenticator;
+
+import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args){
@@ -22,6 +28,13 @@ public class Main {
         InputValidator inputValidator = new InputValidator();
         CookieManager cookieManager = new CookieManager();
         UserAuthenticator authenticator = new UserAuthenticator(db,cookieManager);
+
+        //Navigator routes
+        HashMap<String, GUI> routes = new HashMap<>();
+        routes.put("login", new LogIn(authenticator, inputValidator));
+        routes.put("home", new HomeScreen());
+
+        Navigator.setRoutes(routes);
 
         BookBaeStoreApp bookBaeStoreApplication = new BookBaeStoreApp(
                 connection,
