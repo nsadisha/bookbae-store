@@ -3,7 +3,7 @@ package com.bbstore;
 import com.bbstore.connection.DBConnection;
 import com.bbstore.database.Database;
 import com.bbstore.input.InputValidator;
-import com.bbstore.ui.uis.LogIn;
+import com.bbstore.navigator.Navigator;
 import com.bbstore.users.UserAuthenticator;
 
 public class BookBaeStoreApp {
@@ -23,11 +23,11 @@ public class BookBaeStoreApp {
         try {
             database.connect(connection.getConnection());
 
-            authenticator.signOut();
-            System.out.println(authenticator.isLoggedIn());
-
-            LogIn login = new LogIn(authenticator, this.inputValidator);
-            login.setVisible(true);
+            if(authenticator.isLoggedIn()){
+                Navigator.push("home");
+            }else{
+                Navigator.push("login");
+            }
 
         }catch (Exception e){
             System.out.println("Error: "+e.getMessage());
