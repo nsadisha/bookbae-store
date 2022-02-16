@@ -6,12 +6,19 @@ public class AddBook extends JFrame {
 
 
     private JPanel addBook;
-    private JTextField textField1;
-    private JTextField textField2;
+    private JTextField isbn;
     private JButton SAVEButton;
     private JButton CLEARButton;
-    private JComboBox comboBox1;
-    private JComboBox comboBox2;
+    private JComboBox language;
+    private JComboBox category;
+    private JTextField author;
+    private JTextField publisher;
+    private JTextField year;
+    private JTextField edition;
+    private JTextField avqty;
+    private JTextField price;
+    private JTextField description;
+    private JTextField bookname;
 
     public AddBook()  {
 
@@ -21,8 +28,17 @@ public class AddBook extends JFrame {
 
     }
 
+    public void saveBook(){
+        String Isbn = isbn.getText();
+        String name=bookname.getText();
+
+
+    }
+
     public static void main(String[] args) {
         AddBook addbook = new AddBook();
         addbook.setVisible(true);
     }
+
+
 }
