@@ -17,4 +17,5 @@ public class InputValidator {
     public boolean confirmPassword(String password, String confirmPassword){
         return confirmPassword.equals(password);
     }
+    public boolean validateField(String field){return field.length()>0;}
 }
