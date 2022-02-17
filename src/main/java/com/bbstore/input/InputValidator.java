@@ -14,4 +14,7 @@ public class InputValidator {
     public boolean validatePassword(String password){
         return password.length() >= 8;
     }
+    public boolean confirmPassword(String password, String confirmPassword){
+        return confirmPassword.equals(password);
+    }
 }
