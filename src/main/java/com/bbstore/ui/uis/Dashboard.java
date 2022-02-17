@@ -51,10 +51,10 @@ public class Dashboard extends JFrame {
         jLabel12 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         unpaidOrders = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        newAdmin = new javax.swing.JButton();
+        allOrders = new javax.swing.JButton();
+        editBook = new javax.swing.JButton();
+        newBook = new javax.swing.JButton();
 
         jButton4.setLabel("Add new Book");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -125,20 +125,20 @@ public class Dashboard extends JFrame {
         });
         jScrollPane2.setViewportView(unpaidOrders);
 
-        jButton1.setFont(new java.awt.Font("Apple Braille", 1, 16)); // NOI18N
-        jButton1.setText("New Admin");
+        newAdmin.setFont(new java.awt.Font("Apple Braille", 1, 16)); // NOI18N
+        newAdmin.setText("New Admin");
 
-        jButton2.setFont(new java.awt.Font("Apple Braille", 1, 16)); // NOI18N
-        jButton2.setText("All Orders");
+        allOrders.setFont(new java.awt.Font("Apple Braille", 1, 16)); // NOI18N
+        allOrders.setText("All Orders");
 
-        jButton3.setFont(new java.awt.Font("Apple Braille", 1, 16)); // NOI18N
-        jButton3.setText("Edit Book");
+        editBook.setFont(new java.awt.Font("Apple Braille", 1, 16)); // NOI18N
+        editBook.setText("Edit Book");
 
-        jButton5.setFont(new java.awt.Font("Apple Braille", 1, 16)); // NOI18N
-        jButton5.setText("New Book");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        newBook.setFont(new java.awt.Font("Apple Braille", 1, 16)); // NOI18N
+        newBook.setText("New Book");
+        newBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                newBookActionPerformed(evt);
             }
         });
 
@@ -152,13 +152,13 @@ public class Dashboard extends JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(newAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(newBook, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(editBook, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(allOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(123, 123, 123)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -224,10 +224,10 @@ public class Dashboard extends JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(121, 121, 121)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(newAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(allOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editBook, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(newBook, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22))
         );
@@ -255,9 +255,9 @@ public class Dashboard extends JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void newBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBookActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_newBookActionPerformed
 
     /**
      * @param args the command line arguments
@@ -296,13 +296,11 @@ public class Dashboard extends JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> admins;
+    private javax.swing.JButton allOrders;
     private javax.swing.JLabel books;
+    private javax.swing.JButton editBook;
     private javax.swing.JLabel income;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -314,6 +312,8 @@ public class Dashboard extends JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton newAdmin;
+    private javax.swing.JButton newBook;
     private javax.swing.JLabel orders;
     private javax.swing.JList<String> unpaidOrders;
     private javax.swing.JLabel users;
