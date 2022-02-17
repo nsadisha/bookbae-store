@@ -9,8 +9,9 @@ import com.bbstore.input.InputValidator;
 import com.bbstore.navigator.Navigator;
 import com.bbstore.reader.JSONReader;
 import com.bbstore.ui.GUI;
-import com.bbstore.ui.uis.HomeScreen;
+import com.bbstore.ui.uis.Dashboard;
 import com.bbstore.ui.uis.LogIn;
+import com.bbstore.ui.uis.NewAdmin;
 import com.bbstore.users.UserAuthenticator;
 
 import java.util.HashMap;
@@ -32,7 +33,8 @@ public class Main {
         //Navigator routes
         HashMap<String, GUI> routes = new HashMap<>();
         routes.put("login", new LogIn(authenticator, inputValidator));
-        routes.put("home", new HomeScreen(authenticator));
+        routes.put("home", new Dashboard(authenticator, db));
+        routes.put("newAdmin", new NewAdmin(authenticator, inputValidator));
 
         Navigator.setRoutes(routes);
 
