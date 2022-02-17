@@ -14,6 +14,23 @@ public class UserAuthenticator {
         this.cookieManager = cookieManager;
     }
 
+    public boolean createNewAdmin(String firstName, String lastName, String email, String password, String type) throws Exception{
+        String sql = "INSERT INTO admins VALUES('" +email+ "','" +firstName+ "','" +lastName+ "','" +password+ "','" +type+ "')";
+        try {
+            ResultSet createAdmin = this.database.executeQuery(
+                    "SELECT * FROM orders"
+//                    "INSERT INTO admins(email, fname, lname, password, type) VALUES('qweqw', 'qweqw', 'qweqwe', 'qwewew', '123212321')"
+            );
+
+            if (createAdmin.next()){
+                System.out.println(createAdmin.getString("order_id"));
+            }
+        }catch(Exception e){
+            throw new NewAdminCreationFailedException("New admin creation failed: "+e.getMessage());
+        }
+        return false;
+    }
+
     public boolean login(String email, String password) throws Exception{
         try{
             ResultSet login = this.database.executeQuery(
