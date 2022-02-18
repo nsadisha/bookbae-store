@@ -40,6 +40,13 @@ public class Navigator {
         popUpScreen = routes.get(popUp);
         popUpScreen.setVisible(true);
     }
+    public static void openPopUp(GUI screen){
+        if(popUpScreen != null){
+            popUpScreen.dispose();
+        }
+        popUpScreen = screen;
+        popUpScreen.setVisible(true);
+    }
     private static void closePopUp(){
         popUpScreen.dispose();
         popUpScreen = null;
