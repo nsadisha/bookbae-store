@@ -9,10 +9,7 @@ import com.bbstore.input.InputValidator;
 import com.bbstore.navigator.Navigator;
 import com.bbstore.reader.JSONReader;
 import com.bbstore.ui.GUI;
-import com.bbstore.ui.uis.Dashboard;
-import com.bbstore.ui.uis.LogIn;
-import com.bbstore.ui.uis.NewAdmin;
-import com.bbstore.ui.uis.Orders;
+import com.bbstore.ui.uis.*;
 import com.bbstore.users.UserAuthenticator;
 
 import java.util.HashMap;
