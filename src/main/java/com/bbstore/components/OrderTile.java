@@ -1,5 +1,8 @@
 package com.bbstore.components;
 
+import com.bbstore.navigator.Navigator;
+import com.bbstore.ui.uis.ViewOrder;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -10,16 +13,16 @@ public class OrderTile extends JPanel {
     private JLabel nameField;
     private JLabel statusField;
 
-    public OrderTile(String name, String status){
+    public OrderTile(String orderId, String status){
         accordion.setPreferredSize(new Dimension(750,50));
         add(accordion);
-        this.nameField.setText("#"+name);
+        this.nameField.setText("#"+orderId);
         this.statusField.setText("Status: "+status);
 
         accordion.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println(name);
+                Navigator.openPopUp(new ViewOrder(orderId));
             }
 
             @Override
