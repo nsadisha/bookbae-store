@@ -1,6 +1,8 @@
 package com.bbstore.components;
 
+import com.bbstore.database.Database;
 import com.bbstore.navigator.Navigator;
+import com.bbstore.order.Order;
 import com.bbstore.ui.uis.ViewOrder;
 
 import javax.swing.*;
@@ -13,7 +15,7 @@ public class OrderTile extends JPanel {
     private JLabel nameField;
     private JLabel statusField;
 
-    public OrderTile(String orderId, String status){
+    public OrderTile(String orderId, String status, Database database){
         accordion.setPreferredSize(new Dimension(750,50));
         add(accordion);
         this.nameField.setText("#"+orderId);
@@ -22,7 +24,7 @@ public class OrderTile extends JPanel {
         accordion.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Navigator.openPopUp(new ViewOrder(orderId));
+                Navigator.openPopUp(new ViewOrder(new Order(database, orderId)));
             }
 
             @Override
