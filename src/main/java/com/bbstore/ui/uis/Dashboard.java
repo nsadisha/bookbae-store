@@ -85,12 +85,8 @@ public class Dashboard extends GUI {
         });
         //action listeners
         signOutBtn.addActionListener(e -> this.signOut());
-        newAdminBtn.addActionListener(e ->{
-            Navigator.openPopUp("newAdmin");
-        });
-        viewOrdersBtn.addActionListener(e ->{
-            Navigator.openPopUp("orders");
-        });
+        newAdminBtn.addActionListener(e -> Navigator.openPopUp("newAdmin"));
+        viewOrdersBtn.addActionListener(e -> Navigator.openPopUp("orders"));
         editBookBtn.addActionListener(e -> {
 
         });
