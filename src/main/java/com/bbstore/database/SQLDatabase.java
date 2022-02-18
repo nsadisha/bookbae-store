@@ -1,9 +1,6 @@
 package com.bbstore.database;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class SQLDatabase implements Database{
 
@@ -25,6 +22,21 @@ public class SQLDatabase implements Database{
 
         } catch (SQLException e) {
             throw new QueryExecutionFailedException("SQL database query execution failed");
+        }
+    }
+    public int updateQuery(String query) throws Exception {
+        try {
+
+            //creating a statement
+            this.statement = this.connection.createStatement();
+            //Return the result
+            return this.statement.executeUpdate(query);
+
+        }catch (SQLIntegrityConstraintViolationException e){
+            throw new SQLIntegrityConstraintViolationException(e.getMessage());
+        }catch (SQLException e) {
+            e.printStackTrace();
+            throw new QueryExecutionFailedException("SQL database update query execution failed("+e.getMessage()+")");
         }
     }
 
