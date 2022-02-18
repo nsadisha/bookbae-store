@@ -89,7 +89,7 @@ public class Dashboard extends GUI {
             Navigator.openPopUp("newAdmin");
         });
         viewOrdersBtn.addActionListener(e ->{
-
+            Navigator.openPopUp("orders");
         });
         editBookBtn.addActionListener(e -> {
 
