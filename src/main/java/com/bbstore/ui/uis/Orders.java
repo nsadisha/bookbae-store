@@ -19,7 +19,7 @@ public class Orders extends GUI {
 
     public Orders(Database database){
         setSize(900, 600);
-        setTitle("Add New Admin");
+        setTitle("All Orders");
         setContentPane(this.ordersPanel);
         setResizable(false);
         setLocationRelativeTo(null);
@@ -75,7 +75,7 @@ public class Orders extends GUI {
                 String orderId = res.getString("order_id");
                 String status = res.getString("status");
                 //insert new order items
-                orders.add(new OrderTile(orderId, status));
+                orders.add(new OrderTile(orderId, status, database));
                 //count orders
                 count++;
             }
