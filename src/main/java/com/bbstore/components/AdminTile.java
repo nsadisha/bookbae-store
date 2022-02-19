@@ -19,7 +19,7 @@ public class AdminTile extends JPanel {
         this.adminName.setText(admin.getName()+(admin.getType().equals("super")?" *":""));
         this.adminEmail.setText(admin.getEmail());
         this.removeButton.setVisible(!authenticator.getAdminType().equals("admin"));
-        System.out.println(authenticator.getAdminType());
+
         this.removeButton.addActionListener(e -> {
             try {
                 admin.remove();
