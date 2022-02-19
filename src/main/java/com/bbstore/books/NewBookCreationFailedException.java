@@ -1,4 +1,4 @@
-package com.bbstore.ui.uis.exceptions;
+package com.bbstore.books;
 
 public class NewBookCreationFailedException extends Exception {
     public NewBookCreationFailedException(String msg) {
