@@ -44,6 +44,6 @@ public class GUI extends JFrame implements UI {
             }
         });
     }
-    public void initState(){}
-    public void onDispose(){}
+    protected void initState(){}
+    protected void onDispose(){}
 }

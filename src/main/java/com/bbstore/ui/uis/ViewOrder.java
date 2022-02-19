@@ -39,7 +39,7 @@ public class ViewOrder extends GUI {
     }
 
     @Override
-    public void initState(){
+    protected void initState(){
         super.initState();
         this.orderIdField.setText("Order - #"+order.getOrderId());
         this.totalPrice.setText(order.getOrderTotalPrice());
@@ -49,7 +49,7 @@ public class ViewOrder extends GUI {
         createTable();
     }
     @Override
-    public void onDispose() {
+    protected void onDispose() {
         super.onDispose();
         Navigator.openPopUp(new Orders(order.getDatabase()));
     }
