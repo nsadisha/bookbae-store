@@ -1,13 +1,11 @@
 package com.bbstore.ui.uis;
 
 import com.bbstore.navigator.Navigator;
-import com.bbstore.order.Order;
+import com.bbstore.models.Order;
 import com.bbstore.ui.GUI;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
 public class ViewOrder extends GUI {
 
@@ -36,47 +34,13 @@ public class ViewOrder extends GUI {
 
         this.completeButton.addActionListener(e -> {
             order.complete();
-            Navigator.openPopUp("orders");
-        });
-        addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-                initScreen();
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-                Navigator.openPopUp("orders");
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-
-            }
+            Navigator.openPopUp(new Orders(order.getDatabase()));
         });
     }
 
-    private void initScreen(){
+    @Override
+    protected void initState(){
+        super.initState();
         this.orderIdField.setText("Order - #"+order.getOrderId());
         this.totalPrice.setText(order.getOrderTotalPrice());
         this.orderTime.setText(order.getOrderDate());
@@ -84,6 +48,12 @@ public class ViewOrder extends GUI {
         this.orderAddress.setText(order.getAddress());
         createTable();
     }
+    @Override
+    protected void onDispose() {
+        super.onDispose();
+        Navigator.openPopUp(new Orders(order.getDatabase()));
+    }
+
     private void createTable(){
         this.items.setModel(new DefaultTableModel(
                 order.getItemData(),

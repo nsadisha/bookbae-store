@@ -1,4 +1,4 @@
-package com.bbstore.order;
+package com.bbstore.models;
 
 import com.bbstore.database.Database;
 
@@ -92,6 +92,9 @@ public class Order {
     }
 
     //getters
+    public Database getDatabase() {
+        return database;
+    }
     public String getOrderId(){
         return this.id;
     }

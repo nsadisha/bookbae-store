@@ -2,7 +2,7 @@ package com.bbstore.components;
 
 import com.bbstore.database.Database;
 import com.bbstore.navigator.Navigator;
-import com.bbstore.order.Order;
+import com.bbstore.models.Order;
 import com.bbstore.ui.uis.ViewOrder;
 
 import javax.swing.*;

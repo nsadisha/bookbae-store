@@ -1,15 +1,14 @@
 package com.bbstore.ui.uis;
 
-import com.bbstore.database.Database;
+import com.bbstore.components.AdminTile;
+import com.bbstore.components.UnpaidOrderTile;
+import com.bbstore.models.DashboardData;
 import com.bbstore.navigator.Navigator;
 import com.bbstore.ui.GUI;
 import com.bbstore.users.UserAuthenticator;
 
 import javax.swing.*;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.sql.ResultSet;
-import java.text.DecimalFormat;
+import java.awt.*;
 
 public class Dashboard extends GUI {
     private JPanel homePanel;
@@ -17,6 +16,7 @@ public class Dashboard extends GUI {
     private JLabel totalOrders;
     private JLabel totalUsers;
     private JLabel totalBooks;
+    private JLabel adminName;
 
     private JButton newAdminBtn;
     private JButton viewOrdersBtn;
@@ -24,65 +24,22 @@ public class Dashboard extends GUI {
     private JButton editBookBtn;
     private JButton signOutBtn;
 
-    private JScrollPane allAdmins;
-    private JScrollPane unpaidOrders;
+    private JPanel allAdmins;
+    private JPanel unpaidOrders;
 
     private final UserAuthenticator authenticator;
-    private final Database database;
-    private final DecimalFormat df;
+    private final DashboardData data;
 
-    public Dashboard(UserAuthenticator authenticator, Database database) {
+    public Dashboard(DashboardData data) {
         setSize(1000, 700);
         setExtendedState(GUI.MAXIMIZED_BOTH);
         setTitle("BookBae Store - Dashboard");
         setContentPane(this.homePanel);
         setLocationRelativeTo(null);
         setAutoRequestFocus(true);
-        this.authenticator = authenticator;
-        this.database = database;
-        this.df = new DecimalFormat();
+        this.authenticator = data.getAuthenticator();
+        this.data = data;
 
-        // init screen
-        addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-                try {
-                    initScreen();
-                } catch (Exception exception) {
-                    System.out.println("dashboard initialization failed.\nMsg: "+exception.getMessage());
-                }
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-
-            }
-        });
         //action listeners
         signOutBtn.addActionListener(e -> this.signOut());
         newAdminBtn.addActionListener(e -> Navigator.openPopUp("newAdmin"));
@@ -94,61 +51,40 @@ public class Dashboard extends GUI {
 
         });
     }
-
-    private void initScreen() throws Exception{
+    @Override
+    protected void initState(){
         try{
-            String netIncome = this.getNetIncome();
+            String name = "Welcome "+authenticator.getAdminName()+"!";
+            this.adminName.setText(name);
+
+            String netIncome = data.getNetIncome();
             this.netIncome.setText(netIncome);
 
-            String totalUserCount = this.getUserCount();
+            String totalUserCount = data.getUserCount();
             this.totalUsers.setText(totalUserCount);
 
-            String totalOrderCount = this.getOrderCount();
+            String totalOrderCount = data.getOrderCount();
             this.totalOrders.setText(totalOrderCount);
 
-            String totalBookCount = this.getBookCount();
+            String totalBookCount = data.getBookCount();
             this.totalBooks.setText(totalBookCount);
+
+            //add admin to list
+            AdminTile[] admins = data.getOtherAdmins();
+            allAdmins.setPreferredSize(new Dimension(-1, admins.length*60));
+            for(AdminTile admin : admins){
+                this.allAdmins.add(admin);
+            }
+            //add unpaid orders
+            UnpaidOrderTile[] unpaidOrderArr = data.getUnpaidOrders();
+            unpaidOrders.setPreferredSize(new Dimension(-1, unpaidOrderArr.length*60));
+            for(UnpaidOrderTile order : unpaidOrderArr){
+                this.unpaidOrders.add(order);
+            }
         }catch (Exception e){
-            throw new Exception("Error: Dashboard query execution failed.\n("+e.getMessage()+")");
+            System.out.println("Error: Dashboard query execution failed.\n("+e.getMessage()+")");
         }
     }
-    private String getNetIncome() throws Exception{
-        df.applyPattern("Rs: ###,###,###.00");
-
-        ResultSet res = database.executeQuery("SELECT SUM(total_price) 'total' FROM orders");
-        if(res.next()){
-            return df.format(Double.valueOf(res.getString("total")));
-        }
-        return null;
-    }
-    private String getUserCount() throws Exception{
-        df.applyPattern("###,###,###");
-
-        ResultSet res = database.executeQuery("SELECT COUNT(*) 'count' FROM users");
-        if(res.next()){
-            return df.format(Double.valueOf(res.getString("count")));
-        }
-        return null;
-    }
-    private String getOrderCount() throws Exception{
-        df.applyPattern("###,###,###");
-
-        ResultSet res = database.executeQuery("SELECT COUNT(*) 'count' FROM orders");
-        if(res.next()){
-            return df.format(Double.valueOf(res.getString("count")));
-        }
-        return null;
-    }
-    private String getBookCount() throws Exception{
-        df.applyPattern("###,###,###");
-
-        ResultSet res = database.executeQuery("SELECT COUNT(*) 'count' FROM books");
-        if(res.next()){
-            return df.format(Double.valueOf(res.getString("count")));
-        }
-        return null;
-    }
-
 
     private void signOut(){
         authenticator.signOut();
