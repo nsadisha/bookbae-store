@@ -54,12 +54,36 @@ public class UserAuthenticator {
     public void signOut(){
         this.cookieManager.clearEmail();
     }
-
     public boolean isLoggedIn(){
         return this.cookieManager.isSet();
     }
-
     public String getSignedEmail(){
         return this.cookieManager.getEmail();
+    }
+    public String getAdminName(){
+        try {
+            ResultSet res = database.executeQuery(
+                    "SELECT CONCAT(fname,' ', lname) AS 'name' FROM admins WHERE email='"+getSignedEmail()+"'"
+            );
+            if(res.next()){
+                return res.getString("name");
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return "";
+    }
+    public String getAdminType(){
+        try {
+            ResultSet res = database.executeQuery(
+                    "SELECT type FROM admins WHERE email='"+getSignedEmail()+"'"
+            );
+            if(res.next()){
+                return res.getString("type");
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return "";
     }
 }
