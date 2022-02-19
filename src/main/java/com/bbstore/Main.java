@@ -1,5 +1,6 @@
 package com.bbstore;
 
+import com.bbstore.books.BookManager;
 import com.bbstore.connection.DBConnection;
 import com.bbstore.connection.SQLConnection;
 import com.bbstore.cookies.CookieManager;
@@ -35,7 +36,8 @@ public class Main {
         routes.put("home", new Dashboard(new DashboardData(db, authenticator)));
         routes.put("newAdmin", new NewAdmin(authenticator, inputValidator));
         routes.put("orders", new Orders(db));
-        routes.put("newBook",new NewBook(inputValidator,db));
+        routes.put("newBook",new NewBook(new BookManager(db,inputValidator)));
+        routes.put("search", new SearchBook(new BookManager(db, inputValidator)));
 
         Navigator.setRoutes(routes);
 
