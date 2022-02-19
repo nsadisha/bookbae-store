@@ -35,7 +35,6 @@ public class SQLDatabase implements Database{
         }catch (SQLIntegrityConstraintViolationException e){
             throw new SQLIntegrityConstraintViolationException(e.getMessage());
         }catch (SQLException e) {
-            e.printStackTrace();
             throw new QueryExecutionFailedException("SQL database update query execution failed("+e.getMessage()+")");
         }
     }
