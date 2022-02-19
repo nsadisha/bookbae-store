@@ -47,9 +47,7 @@ public class Dashboard extends GUI {
         editBookBtn.addActionListener(e -> {
 
         });
-        newBookBtn.addActionListener(e -> {
-
-        });
+        newBookBtn.addActionListener(e -> Navigator.openPopUp("newBook"));
     }
     @Override
     protected void initState(){
