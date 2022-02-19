@@ -6,8 +6,6 @@ import com.bbstore.ui.GUI;
 import com.bbstore.users.UserAuthenticator;
 
 import javax.swing.*;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.sql.ResultSet;
 import java.text.DecimalFormat;
 
@@ -42,47 +40,6 @@ public class Dashboard extends GUI {
         this.database = database;
         this.df = new DecimalFormat();
 
-        // init screen
-        addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-                try {
-                    initScreen();
-                } catch (Exception exception) {
-                    System.out.println("dashboard initialization failed.\nMsg: "+exception.getMessage());
-                }
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-
-            }
-        });
         //action listeners
         signOutBtn.addActionListener(e -> this.signOut());
         newAdminBtn.addActionListener(e -> Navigator.openPopUp("newAdmin"));
@@ -94,8 +51,8 @@ public class Dashboard extends GUI {
 
         });
     }
-
-    private void initScreen() throws Exception{
+    @Override
+    protected void initState(){
         try{
             String netIncome = this.getNetIncome();
             this.netIncome.setText(netIncome);
@@ -109,7 +66,7 @@ public class Dashboard extends GUI {
             String totalBookCount = this.getBookCount();
             this.totalBooks.setText(totalBookCount);
         }catch (Exception e){
-            throw new Exception("Error: Dashboard query execution failed.\n("+e.getMessage()+")");
+            System.out.println("Error: Dashboard query execution failed.\n("+e.getMessage()+")");
         }
     }
     private String getNetIncome() throws Exception{
