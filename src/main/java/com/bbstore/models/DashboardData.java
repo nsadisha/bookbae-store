@@ -1,6 +1,7 @@
 package com.bbstore.models;
 
 import com.bbstore.components.AdminTile;
+import com.bbstore.components.UnpaidOrderTile;
 import com.bbstore.database.Database;
 import com.bbstore.users.UserAuthenticator;
 
@@ -80,5 +81,26 @@ public class DashboardData {
         }
 
         return admins;
+    }
+    public UnpaidOrderTile[] getUnpaidOrders() throws Exception {
+        ResultSet res = database.executeQuery(
+                "SELECT order_id FROM placed_orders"
+        );
+        List<UnpaidOrderTile> unpaidOrderTiles = new ArrayList<>();
+        int i = 0;
+        while(res.next()){
+            unpaidOrderTiles.add(
+                    new UnpaidOrderTile(
+                            new UnpaidOrder(database, res.getString("order_id"))
+                    )
+            );
+            i++;
+        }
+        UnpaidOrderTile[] orders = new UnpaidOrderTile[i];
+        for(int j=0; j<orders.length; j++){
+            orders[j] = unpaidOrderTiles.get(j);
+        }
+
+        return orders;
     }
 }
