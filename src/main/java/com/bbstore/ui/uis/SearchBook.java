@@ -1,5 +1,8 @@
 package com.bbstore.ui.uis;
 
+import com.bbstore.database.Database;
+import com.bbstore.database.SQLDatabase;
+import com.bbstore.input.InputValidator;
 import com.bbstore.ui.GUI;
 
 import javax.swing.*;
@@ -22,6 +25,10 @@ public class SearchBook extends GUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String isbn=isbnField.getText();
+                InputValidator inputValidator=new InputValidator();
+                Database database=new SQLDatabase();
+                EditBook editBook=new EditBook(isbn,inputValidator,database);
+
             }
         });
     }

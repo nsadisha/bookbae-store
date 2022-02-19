@@ -41,6 +41,7 @@ public class EditBook extends GUI {
         setResizable(false);
         setContentPane(this.homePanel);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setVisible(true);
 
         fillData(isbn);
 
