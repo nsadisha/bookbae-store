@@ -1,6 +1,7 @@
 package com.bbstore.ui.uis;
 
 import com.bbstore.components.AdminTile;
+import com.bbstore.components.UnpaidOrderTile;
 import com.bbstore.models.DashboardData;
 import com.bbstore.navigator.Navigator;
 import com.bbstore.ui.GUI;
@@ -75,7 +76,11 @@ public class Dashboard extends GUI {
                 this.allAdmins.add(admin);
             }
             //add unpaid orders
-            unpaidOrders.setPreferredSize(new Dimension(-1, admins.length*60));
+            UnpaidOrderTile[] unpaidOrderArr = data.getUnpaidOrders();
+            unpaidOrders.setPreferredSize(new Dimension(-1, unpaidOrderArr.length*60));
+            for(UnpaidOrderTile order : unpaidOrderArr){
+                this.unpaidOrders.add(order);
+            }
         }catch (Exception e){
             System.out.println("Error: Dashboard query execution failed.\n("+e.getMessage()+")");
         }
