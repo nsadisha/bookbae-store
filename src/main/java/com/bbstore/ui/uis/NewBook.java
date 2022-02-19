@@ -14,7 +14,6 @@ public class NewBook extends GUI {
     private JComboBox categoryBox;
     private JComboBox languageBox;
     private JTextArea bookDescriptionField;
-    private JButton cancelButton;
     private JButton addBookButton;
     private JTextField bookNameField;
     private JTextField authorNameField;
@@ -23,6 +22,7 @@ public class NewBook extends GUI {
     private JTextField priceField;
     private JTextField editionField;
     private JTextField availableQuantityField;
+    private JButton cancelButton;
 
     private final Database database;
     private final InputValidator inputValidator;
