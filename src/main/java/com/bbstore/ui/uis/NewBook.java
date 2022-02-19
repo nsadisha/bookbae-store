@@ -97,7 +97,7 @@ public class NewBook extends GUI {
             throw new NewBookCreationFailedException("There should be at least 1 character ");
         }else {
 
-            String query = "INSERT INTO books VALUES ('"+isbn+ "','" +bookName+ "','" +price+ "','" +category+ "','" +language+ "','" +authorName+ "','" +year+ "','" +edition
+            String query = "INSERT INTO books VALUES('"+isbn+ "','" +bookName+ "','" +price+ "','" +category+ "','" +language+ "','" +authorName+ "','" +year+ "','" +edition
                     + "','" +publisherName+ "','" +bookDescription+ "','" +availableQuantity+ "')";
 
             try {
