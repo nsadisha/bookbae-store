@@ -12,6 +12,7 @@ import com.bbstore.ui.GUI;
 import com.bbstore.ui.uis.Dashboard;
 import com.bbstore.ui.uis.LogIn;
 import com.bbstore.ui.uis.NewAdmin;
+import com.bbstore.ui.uis.NewBook;
 import com.bbstore.users.UserAuthenticator;
 
 import java.util.HashMap;
@@ -35,6 +36,7 @@ public class Main {
         routes.put("login", new LogIn(authenticator, inputValidator));
         routes.put("home", new Dashboard(authenticator, db));
         routes.put("newAdmin", new NewAdmin(authenticator, inputValidator));
+        routes.put("newBook",new NewBook(inputValidator,db));
 
         Navigator.setRoutes(routes);
 

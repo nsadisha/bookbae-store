@@ -48,7 +48,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="dca64" class="javax.swing.JTextField">
+              <component id="dca64" class="javax.swing.JTextField" binding="authorNameField">
                 <constraints>
                   <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -61,7 +61,7 @@
                   <toolTipText value=""/>
                 </properties>
               </component>
-              <component id="daa62" class="javax.swing.JTextField">
+              <component id="daa62" class="javax.swing.JTextField" binding="yearField">
                 <constraints>
                   <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -74,7 +74,7 @@
                   <toolTipText value=""/>
                 </properties>
               </component>
-              <component id="17772" class="javax.swing.JTextField">
+              <component id="17772" class="javax.swing.JTextField" binding="editionField">
                 <constraints>
                   <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -87,7 +87,7 @@
                   <toolTipText value=""/>
                 </properties>
               </component>
-              <component id="9d51a" class="javax.swing.JTextField" binding="emailField">
+              <component id="9d51a" class="javax.swing.JTextField" binding="isbnField">
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -145,7 +145,7 @@
                   <text value="Category"/>
                 </properties>
               </component>
-              <component id="5ab03" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+              <component id="5ab03" class="javax.swing.JComboBox" binding="categoryBox">
                 <constraints>
                   <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -174,7 +174,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="fa8ee" class="javax.swing.JTextField">
+              <component id="fa8ee" class="javax.swing.JTextField" binding="bookNameField">
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -187,7 +187,7 @@
                   <toolTipText value=""/>
                 </properties>
               </component>
-              <component id="76714" class="javax.swing.JTextField">
+              <component id="76714" class="javax.swing.JTextField" binding="priceField">
                 <constraints>
                   <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -200,7 +200,7 @@
                   <toolTipText value=""/>
                 </properties>
               </component>
-              <component id="de50d" class="javax.swing.JTextField">
+              <component id="de50d" class="javax.swing.JTextField" binding="availableQuantityField">
                 <constraints>
                   <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -213,7 +213,7 @@
                   <toolTipText value=""/>
                 </properties>
               </component>
-              <component id="67e1c" class="javax.swing.JTextField">
+              <component id="67e1c" class="javax.swing.JTextField" binding="publisherNameField">
                 <constraints>
                   <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -271,14 +271,14 @@
                   <text value="Language"/>
                 </properties>
               </component>
-              <component id="edad0" class="javax.swing.JComboBox" binding="comboBox2" default-binding="true">
+              <component id="edad0" class="javax.swing.JComboBox" binding="languageBox">
                 <constraints>
                   <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <model>
                     <item value="English"/>
-                    <item value="Sinhala "/>
+                    <item value="Sinhala"/>
                     <item value="Tamil"/>
                   </model>
                 </properties>
@@ -304,17 +304,19 @@
               <text value="Book Description"/>
             </properties>
           </component>
-          <component id="95c0c" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
+          <component id="95c0c" class="javax.swing.JTextArea" binding="bookDescriptionField">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="50"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <font size="16"/>
+            </properties>
           </component>
         </children>
       </grid>
-      <grid id="8db43" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="8db43" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -322,15 +324,25 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="a7acb" class="javax.swing.JButton" binding="addBookButton" default-binding="true">
+          <component id="a7acb" class="javax.swing.JButton" binding="cancelButton">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font size="16"/>
+              <text value="Cancel"/>
+            </properties>
+          </component>
+          <component id="53361" class="javax.swing.JButton" binding="addBookButton">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font size="16"/>
               <text value="Add Book"/>
             </properties>
           </component>
-          <hspacer id="2198f">
+          <hspacer id="b7bdb">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
