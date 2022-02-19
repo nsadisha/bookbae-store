@@ -35,6 +35,7 @@ public class Main {
         routes.put("home", new Dashboard(new DashboardData(db, authenticator)));
         routes.put("newAdmin", new NewAdmin(authenticator, inputValidator));
         routes.put("orders", new Orders(db));
+        routes.put("newBook",new NewBook(inputValidator,db));
 
         Navigator.setRoutes(routes);
 
