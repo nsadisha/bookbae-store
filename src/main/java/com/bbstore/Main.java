@@ -6,6 +6,7 @@ import com.bbstore.cookies.CookieManager;
 import com.bbstore.database.Database;
 import com.bbstore.database.SQLDatabase;
 import com.bbstore.input.InputValidator;
+import com.bbstore.models.DashboardData;
 import com.bbstore.navigator.Navigator;
 import com.bbstore.reader.JSONReader;
 import com.bbstore.ui.GUI;
@@ -31,7 +32,7 @@ public class Main {
         //Navigator routes
         HashMap<String, GUI> routes = new HashMap<>();
         routes.put("login", new LogIn(authenticator, inputValidator));
-        routes.put("home", new Dashboard(authenticator, db));
+        routes.put("home", new Dashboard(authenticator, new DashboardData(db)));
         routes.put("newAdmin", new NewAdmin(authenticator, inputValidator));
         routes.put("orders", new Orders(db));
 
