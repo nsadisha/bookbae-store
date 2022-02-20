@@ -19,7 +19,7 @@ public class Order {
     private String address;
     private String status;
 
-    public Order(Database database, String id){
+    public Order(Database database, String id) throws Exception{
         df.applyPattern("Rs: ###,###,###.00");
         this.database = database;
         this.id = id;
@@ -29,14 +29,10 @@ public class Order {
     }
 
     //setters
-    public void init(){
-        try{
-            setTableData();
-            setOrderData();
-            setAddress();
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
+    public void init() throws Exception{
+        setTableData();
+        setOrderData();
+        setAddress();
     }
     private void setOrderData() throws Exception{
         String sql = "SELECT * FROM orders WHERE order_id='"+id+"'";
