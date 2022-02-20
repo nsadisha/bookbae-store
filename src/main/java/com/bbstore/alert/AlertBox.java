@@ -4,9 +4,8 @@ import javax.swing.*;
 
 public abstract class AlertBox {
 
-    public static void showAlert(String message,String type){
+    public static void showAlert(String title, String message, int type){
 
-        JOptionPane.showMessageDialog(null,message,type,JOptionPane.INFORMATION_MESSAGE);
-
+        JOptionPane.showMessageDialog(null,message,title, type);
     }
 }
