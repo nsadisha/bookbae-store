@@ -38,6 +38,7 @@ public class Orders extends GUI {
     private void getOrders(){
         int count=0;
         try{
+            setAlwaysOnTop(false);
             ResultSet res = this.database.executeQuery("SELECT * FROM orders");
             while (res.next()){
                 String orderId = res.getString("order_id");
@@ -52,6 +53,8 @@ public class Orders extends GUI {
             this.orders.setPreferredSize(new Dimension(750, 66*count));
         }catch (Exception e){
             AlertBox.showAlert("Cannot load orders", e.getMessage(), JOptionPane.ERROR_MESSAGE);
+        }finally {
+            setAlwaysOnTop(true);
         }
     }
 }
