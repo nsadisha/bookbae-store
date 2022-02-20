@@ -1,5 +1,6 @@
 package com.bbstore.ui.uis;
 
+import com.bbstore.alert.AlertBox;
 import com.bbstore.input.InputValidator;
 import com.bbstore.input.InvalidInputException;
 import com.bbstore.input.PasswordEncryptor;
@@ -35,8 +36,10 @@ public class LogIn extends GUI {
 
             try {
                 login(email, passwordText);
+            } catch(InvalidInputException exception){
+                AlertBox.showAlert("Warning", exception.getMessage(), JOptionPane.WARNING_MESSAGE);
             } catch (Exception exception) {
-                System.out.println("Error: "+exception.getMessage());
+                AlertBox.showAlert("Error", exception.getMessage(), JOptionPane.ERROR_MESSAGE);
             }
 
         });
