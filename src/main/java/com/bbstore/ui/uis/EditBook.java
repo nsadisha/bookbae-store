@@ -3,6 +3,7 @@ package com.bbstore.ui.uis;
 import com.bbstore.alert.AlertBox;
 import com.bbstore.books.Book;
 import com.bbstore.books.BookManager;
+import com.bbstore.input.InvalidInputException;
 import com.bbstore.navigator.Navigator;
 import com.bbstore.ui.GUI;
 
@@ -76,6 +77,8 @@ public class EditBook extends GUI {
                     Navigator.pop();
                 }
 
+            }catch(InvalidInputException exception){
+                AlertBox.showAlert("Warning", exception.getMessage(), JOptionPane.WARNING_MESSAGE);
             }catch (Exception exception) {
                 AlertBox.showAlert("Error", exception.getMessage(), JOptionPane.ERROR_MESSAGE);
             }finally {
