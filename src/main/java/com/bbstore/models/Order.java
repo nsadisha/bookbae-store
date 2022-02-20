@@ -1,7 +1,9 @@
 package com.bbstore.models;
 
+import com.bbstore.alert.AlertBox;
 import com.bbstore.database.Database;
 
+import javax.swing.*;
 import java.sql.ResultSet;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -19,7 +21,7 @@ public class Order {
     private String address;
     private String status;
 
-    public Order(Database database, String id) throws Exception{
+    public Order(Database database, String id){
         df.applyPattern("Rs: ###,###,###.00");
         this.database = database;
         this.id = id;
@@ -29,10 +31,14 @@ public class Order {
     }
 
     //setters
-    public void init() throws Exception{
-        setTableData();
-        setOrderData();
-        setAddress();
+    public void init() {
+        try{
+            setTableData();
+            setOrderData();
+            setAddress();
+        }catch(Exception e){
+            AlertBox.showAlert("Error", e.getMessage(), JOptionPane.ERROR_MESSAGE);
+        }
     }
     private void setOrderData() throws Exception{
         String sql = "SELECT * FROM orders WHERE order_id='"+id+"'";
