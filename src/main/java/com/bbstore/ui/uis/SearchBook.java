@@ -1,5 +1,6 @@
 package com.bbstore.ui.uis;
 
+import com.bbstore.alert.AlertBox;
 import com.bbstore.books.BookManager;
 import com.bbstore.books.ISBNNotFoundException;
 import com.bbstore.navigator.Navigator;
@@ -25,13 +26,16 @@ public class SearchBook extends GUI {
         searchButton.addActionListener(e -> {
             String isbn=isbnField.getText();
             try {
+                setAlwaysOnTop(false);
                 if(bookManager.checkISBN(isbn)){
                     Navigator.openPopUp(new EditBook(isbn, bookManager));
                 }else{
                     throw new ISBNNotFoundException("ISBN not found!");
                 }
             } catch (Exception exception) {
-                exception.printStackTrace();
+                AlertBox.showAlert("Error", exception.getMessage(), JOptionPane.ERROR_MESSAGE);
+            } finally {
+                setAlwaysOnTop(true);
             }
         });
     }
