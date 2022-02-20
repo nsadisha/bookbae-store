@@ -1,5 +1,6 @@
 package com.bbstore;
 
+import com.bbstore.alert.AlertBox;
 import com.bbstore.connection.DBConnection;
 import com.bbstore.database.Database;
 import com.bbstore.input.InputValidator;
@@ -30,6 +31,7 @@ public class BookBaeStoreApp {
             }
 
         }catch (Exception e){
+            AlertBox.showAlert(e.getMessage(),"Warning");
             System.out.println("Error: "+e.getMessage());
         }
     }
