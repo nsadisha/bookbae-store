@@ -1,5 +1,6 @@
 package com.bbstore.components;
 
+import com.bbstore.alert.AlertBox;
 import com.bbstore.models.UnpaidOrder;
 
 import javax.swing.*;
@@ -26,7 +27,7 @@ public class UnpaidOrderTile extends JPanel{
                 order.remove();
                 this.tile.setVisible(false);
             } catch (Exception exception) {
-                System.out.println(exception.getMessage());
+                AlertBox.showAlert("Remove order failed", exception.getMessage(), JOptionPane.ERROR_MESSAGE);
             }
         });
     }
