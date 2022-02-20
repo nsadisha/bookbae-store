@@ -1,9 +1,11 @@
 package com.bbstore.reader;
 
+import com.bbstore.alert.AlertBox;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -20,11 +22,14 @@ public class JSONReader {
             this.fileReader = new FileReader(filename);
             this.obj = (JSONObject) jsonParser.parse(fileReader);
         }catch (FileNotFoundException e){
-            System.out.println(filename+" not found!");
+            AlertBox.showAlert("Error",filename+" not found!", JOptionPane.ERROR_MESSAGE);
+            System.out.println();
         }catch (IOException e){
-            System.out.println("Something went wrong.");
+            AlertBox.showAlert("Error", e.getMessage(), JOptionPane.ERROR_MESSAGE);
         }catch (ParseException e){
-            System.out.println("Error parsing json data.");
+            AlertBox.showAlert("Error", "Syntax error in "+filename, JOptionPane.ERROR_MESSAGE);
+        }catch (Exception e){
+            AlertBox.showAlert("Error", "Error reading "+filename, JOptionPane.ERROR_MESSAGE);
         }
     }
 
