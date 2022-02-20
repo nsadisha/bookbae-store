@@ -1,7 +1,9 @@
 package com.bbstore.models;
 
+import com.bbstore.alert.AlertBox;
 import com.bbstore.database.Database;
 
+import javax.swing.*;
 import java.sql.ResultSet;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -29,13 +31,13 @@ public class Order {
     }
 
     //setters
-    public void init(){
+    public void init() {
         try{
             setTableData();
             setOrderData();
             setAddress();
         }catch(Exception e){
-            System.out.println(e.getMessage());
+            AlertBox.showAlert("Error", e.getMessage(), JOptionPane.ERROR_MESSAGE);
         }
     }
     private void setOrderData() throws Exception{

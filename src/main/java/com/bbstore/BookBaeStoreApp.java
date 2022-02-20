@@ -1,10 +1,13 @@
 package com.bbstore;
 
+import com.bbstore.alert.AlertBox;
 import com.bbstore.connection.DBConnection;
 import com.bbstore.database.Database;
 import com.bbstore.input.InputValidator;
 import com.bbstore.navigator.Navigator;
 import com.bbstore.users.UserAuthenticator;
+
+import javax.swing.*;
 
 public class BookBaeStoreApp {
     DBConnection connection;
@@ -30,7 +33,7 @@ public class BookBaeStoreApp {
             }
 
         }catch (Exception e){
-            System.out.println("Error: "+e.getMessage());
+            AlertBox.showAlert("Error", e.getMessage(), JOptionPane.ERROR_MESSAGE);
         }
     }
 

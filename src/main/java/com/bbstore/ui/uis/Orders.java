@@ -1,5 +1,6 @@
 package com.bbstore.ui.uis;
 
+import com.bbstore.alert.AlertBox;
 import com.bbstore.components.OrderTile;
 import com.bbstore.database.Database;
 import com.bbstore.ui.GUI;
@@ -31,9 +32,14 @@ public class Orders extends GUI {
     @Override
     protected void initState(){
         super.initState();
+        getOrders();
+
+    }
+    private void getOrders(){
         int count=0;
         try{
-            ResultSet res = getOrders();
+            setAlwaysOnTop(false);
+            ResultSet res = this.database.executeQuery("SELECT * FROM orders");
             while (res.next()){
                 String orderId = res.getString("order_id");
                 String status = res.getString("status");
@@ -45,12 +51,10 @@ public class Orders extends GUI {
 
             orders.setLayout(new FlowLayout());
             this.orders.setPreferredSize(new Dimension(750, 66*count));
-        }catch(Exception e){
-            System.out.println(e.getMessage());
+        }catch (Exception e){
+            AlertBox.showAlert("Cannot load orders", e.getMessage(), JOptionPane.ERROR_MESSAGE);
+        }finally {
+            setAlwaysOnTop(true);
         }
-    }
-
-    private ResultSet getOrders() throws Exception{
-        return this.database.executeQuery("SELECT * FROM orders");
     }
 }

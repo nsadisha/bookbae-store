@@ -1,7 +1,9 @@
 package com.bbstore.ui.uis;
 
+import com.bbstore.alert.AlertBox;
 import com.bbstore.books.Book;
 import com.bbstore.books.BookManager;
+import com.bbstore.input.InvalidInputException;
 import com.bbstore.navigator.Navigator;
 import com.bbstore.ui.GUI;
 
@@ -48,6 +50,7 @@ public class NewBook extends GUI {
             String bookDescription=bookDescriptionField.getText();
 
             try{
+                setAlwaysOnTop(false);
                 boolean isNewBookCreated = bookManager.addNewBook(
                         new Book(
                                 isbn,
@@ -67,8 +70,12 @@ public class NewBook extends GUI {
                 if(isNewBookCreated){
                     Navigator.pop();
                 }
-            }catch (Exception exception) {
-                System.out.println(exception.getMessage());
+            }catch (InvalidInputException exception) {
+                AlertBox.showAlert("Warning", exception.getMessage(), JOptionPane.WARNING_MESSAGE);
+            }catch(Exception exception){
+                AlertBox.showAlert("Error", exception.getMessage(), JOptionPane.ERROR_MESSAGE);
+            }finally {
+                setAlwaysOnTop(true);
             }
         });
         cancelButton.addActionListener(e -> Navigator.pop());

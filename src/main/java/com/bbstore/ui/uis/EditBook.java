@@ -1,7 +1,9 @@
 package com.bbstore.ui.uis;
 
+import com.bbstore.alert.AlertBox;
 import com.bbstore.books.Book;
 import com.bbstore.books.BookManager;
+import com.bbstore.input.InvalidInputException;
 import com.bbstore.navigator.Navigator;
 import com.bbstore.ui.GUI;
 
@@ -54,6 +56,7 @@ public class EditBook extends GUI {
             String bookDescription=bookDescriptionField.getText();
 
             try{
+                setAlwaysOnTop(false);
                 boolean isBookUpdated=bookManager.editBook(
                         isbn,
                         new Book(
@@ -74,8 +77,12 @@ public class EditBook extends GUI {
                     Navigator.pop();
                 }
 
+            }catch(InvalidInputException exception){
+                AlertBox.showAlert("Warning", exception.getMessage(), JOptionPane.WARNING_MESSAGE);
             }catch (Exception exception) {
-                System.out.println(exception.getMessage());
+                AlertBox.showAlert("Error", exception.getMessage(), JOptionPane.ERROR_MESSAGE);
+            }finally {
+                setAlwaysOnTop(true);
             }
         });
         cancelButton.addActionListener(e -> Navigator.pop());
@@ -85,10 +92,10 @@ public class EditBook extends GUI {
     protected void initState(){
         super.initState();
         loadData();
-
     }
     private void loadData(){
         try {
+            setAlwaysOnTop(false);
             Book book = bookManager.getBook(isbn);
 
             isbnField.setText(book.getIsbn());
@@ -103,7 +110,9 @@ public class EditBook extends GUI {
             categoryBox.setSelectedItem(book.getCategory());
             bookDescriptionField.setText(book.getDescription());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            AlertBox.showAlert("Cannot load book details", e.getMessage(), JOptionPane.ERROR_MESSAGE);
+        } finally {
+            setAlwaysOnTop(true);
         }
     }
 }

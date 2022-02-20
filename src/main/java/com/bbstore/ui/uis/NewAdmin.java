@@ -1,10 +1,11 @@
 package com.bbstore.ui.uis;
 
+import com.bbstore.alert.AlertBox;
 import com.bbstore.input.InputValidator;
+import com.bbstore.input.InvalidInputException;
 import com.bbstore.input.PasswordEncryptor;
 import com.bbstore.navigator.Navigator;
 import com.bbstore.ui.GUI;
-import com.bbstore.users.NewAdminCreationFailedException;
 import com.bbstore.users.UserAuthenticator;
 
 import javax.swing.*;
@@ -60,14 +61,18 @@ public class NewAdmin extends GUI {
             String password = String.valueOf(passwordField.getPassword());
             String confirmPassword = String.valueOf(confirmPasswordField.getPassword());
 
-            boolean isNewAdminCreated = false;
             try {
-                isNewAdminCreated = addNewAdmin(email, firstname, lastname, password, confirmPassword, adminType);
+                setAlwaysOnTop(false);
+                boolean isNewAdminCreated = addNewAdmin(email, firstname, lastname, password, confirmPassword, adminType);
+                if(isNewAdminCreated){
+                    Navigator.pop();
+                }
+            } catch (InvalidInputException exception){
+                AlertBox.showAlert("Warning", exception.getMessage(), JOptionPane.WARNING_MESSAGE);
             } catch (Exception exception) {
-                System.out.println(exception.getMessage());
-            }
-            if(isNewAdminCreated){
-                Navigator.pop();
+                AlertBox.showAlert("Error", exception.getMessage(), JOptionPane.ERROR_MESSAGE);
+            } finally {
+                setAlwaysOnTop(true);
             }
         });
     }
@@ -75,15 +80,15 @@ public class NewAdmin extends GUI {
     private boolean addNewAdmin(String email, String firstName,
                                 String lastName, String password, String confirmPassword, String type) throws Exception{
         if(!inputValidator.validateField(firstName)){
-            throw new NewAdminCreationFailedException("First name must contain at least 1 character!");
+            throw new InvalidInputException("First name must contain at least 1 character!");
         }else if(!inputValidator.validateField(lastName)){
-            throw new NewAdminCreationFailedException("Last name must contain at least 1 character!");
+            throw new InvalidInputException("Last name must contain at least 1 character!");
         }else if(!inputValidator.validateEmail(email)){
-            throw new NewAdminCreationFailedException("Invalid email address!");
+            throw new InvalidInputException("Invalid email address!");
         }else if(!inputValidator.validatePassword(password)){
-            throw new NewAdminCreationFailedException("Invalid password(use at least 8 characters)!");
+            throw new InvalidInputException("Invalid password(use at least 8 characters)!");
         }else if(!inputValidator.confirmPassword(password, confirmPassword)){
-            throw new NewAdminCreationFailedException("Password mismatch!");
+            throw new InvalidInputException("Password mismatch!");
         }else{
             String _password = PasswordEncryptor.md5(password);
             return authenticator.createNewAdmin(

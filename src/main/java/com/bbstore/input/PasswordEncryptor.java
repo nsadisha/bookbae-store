@@ -1,5 +1,8 @@
 package com.bbstore.input;
 
+import com.bbstore.alert.AlertBox;
+
+import javax.swing.*;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
@@ -17,7 +20,7 @@ public class PasswordEncryptor {
             }
             return stringBuffer.toString();
         } catch (Exception e) {
-            System.out.println("md5 Failed!");
+            AlertBox.showAlert("Password encryption failed", e.getMessage(), JOptionPane.ERROR_MESSAGE);
         }
         return null;
     }

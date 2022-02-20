@@ -2,6 +2,7 @@ package com.bbstore.books;
 
 import com.bbstore.database.Database;
 import com.bbstore.input.InputValidator;
+import com.bbstore.input.InvalidInputException;
 
 import java.sql.ResultSet;
 import java.sql.SQLIntegrityConstraintViolationException;
@@ -14,25 +15,25 @@ public class BookManager {
         this.database = database;
         this.validator = validator;
     }
-    private boolean validateBook(Book book) throws NewBookCreationFailedException{
+    private boolean validateBook(Book book) throws Exception{
         if(!validator.validateField(book.getIsbn())){
-            throw new NewBookCreationFailedException("ISBN has at least 1 character!");
+            throw new InvalidInputException("ISBN has at least 1 character!");
         }else if(!validator.validateField(book.getName())) {
-            throw new NewBookCreationFailedException("Name has at least 1 character!");
+            throw new InvalidInputException("Name has at least 1 character!");
         }else if(!validator.validateField(book.getAuthor())) {
-            throw new NewBookCreationFailedException("Author name has at least 1 character!");
+            throw new InvalidInputException("Author name has at least 1 character!");
         }else if(!validator.validateField(book.getPublisher())) {
-            throw new NewBookCreationFailedException("Publisher name has at least 1 character!");
+            throw new InvalidInputException("Publisher name has at least 1 character!");
         }else if(!validator.validateField(book.getYear())) {
-            throw new NewBookCreationFailedException("Year is required!");
+            throw new InvalidInputException("Year is required!");
         }else if(!validator.validateField(book.getPrice())) {
-            throw new NewBookCreationFailedException("Price is required!");
+            throw new InvalidInputException("Price is required!");
         }else if(!validator.validateField(book.getEdition())) {
-            throw new NewBookCreationFailedException("Edition is required!");
+            throw new InvalidInputException("Edition is required!");
         }else if(!validator.validateField(book.getQuantity())) {
-            throw new NewBookCreationFailedException("Quantity is required");
+            throw new InvalidInputException("Quantity is required");
         }else if(!validator.validateField(book.getDescription())) {
-            throw new NewBookCreationFailedException("Description has at least 1 character");
+            throw new InvalidInputException("Description has at least 1 character");
         }else{
             return true;
         }
@@ -62,10 +63,11 @@ public class BookManager {
             try {
                 int addBook = database.updateQuery(query);
                 return addBook == 1;
+            }catch(InvalidInputException e){
+                throw new InvalidInputException(e.getMessage());
             }catch(SQLIntegrityConstraintViolationException e){
                 throw new NewBookCreationFailedException("ISBN is already available!");
             }catch (Exception e){
-                e.printStackTrace();
                 throw new NewBookCreationFailedException("New book creation failed!: "+e.getMessage());
             }
         }
@@ -83,6 +85,8 @@ public class BookManager {
                 int updateBook = database.updateQuery(query);
 
                 return updateBook == 1;
+            }catch(InvalidInputException e){
+                throw new InvalidInputException(e.getMessage());
             }catch(SQLIntegrityConstraintViolationException e){
                 throw new BookUpdateFailedException("New ISBN is already available!");
             }catch (Exception e){
