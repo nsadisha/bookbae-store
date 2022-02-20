@@ -1,5 +1,6 @@
 package com.bbstore.components;
 
+import com.bbstore.alert.AlertBox;
 import com.bbstore.models.Admin;
 import com.bbstore.users.UserAuthenticator;
 
@@ -25,7 +26,7 @@ public class AdminTile extends JPanel {
                 admin.remove();
                 this.tile.setVisible(false);
             } catch (Exception exception) {
-                System.out.println(exception.getMessage());
+                AlertBox.showAlert("Remove admin failed", exception.getMessage(), JOptionPane.ERROR_MESSAGE);
             }
         });
     }
