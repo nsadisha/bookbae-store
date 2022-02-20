@@ -7,6 +7,8 @@ import com.bbstore.input.InputValidator;
 import com.bbstore.navigator.Navigator;
 import com.bbstore.users.UserAuthenticator;
 
+import javax.swing.*;
+
 public class BookBaeStoreApp {
     DBConnection connection;
     Database database;
@@ -31,8 +33,7 @@ public class BookBaeStoreApp {
             }
 
         }catch (Exception e){
-            AlertBox.showAlert(e.getMessage(),"Warning");
-            System.out.println("Error: "+e.getMessage());
+            AlertBox.showAlert("Error", e.getMessage(), JOptionPane.ERROR_MESSAGE);
         }
     }
 
